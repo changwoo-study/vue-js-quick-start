@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-01</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        layout1 {
+            margin: 30px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="example" class="container layout1">
+    <p><input type="text" v-model="amount" class="form-control"></p>
+    <p>
+        <button id="deposit" v-on:click="balance += parseInt(amount)" class="btn btn-primary">예금</button>
+        <button id="withdraw" v-on:click="balance -= parseInt(amount)" class="btn btn-primary">인출</button>
+    </p>
+    <h3>계좌 잔고: {{ balance }}</h3>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            amount: 0,
+            balance: 0
+        }
+    });
+</script>
+</body>
+</html>
