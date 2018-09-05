@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-01</title>
+</head>
+<body>
+<div id="test">
+    {{name}}
+</div>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script>
+    var model = {
+        name: "홍길동"
+    };
+    var vm = new Vue({
+        el: '#test', data: model
+    });
+</script>
+</body>
+</html>
