@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-06</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <select>
+            <option-component></option-component>
+            <option-component></option-component>
+        </select>
+    </div>
+    <script type="text/x-template" id="helloTemplate">
+        <div>Hello, World!</div>
+    </script>
+    <script>
+        Vue.component('option-component', {
+            template: '<option>hello</option>'
+        });
+        var v = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>

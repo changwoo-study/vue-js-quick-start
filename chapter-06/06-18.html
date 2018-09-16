@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-18</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        .button-style {
+            width: 120px;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+
+    <!-- child component -->
+    <template id="childTemplate">
+        <div>
+            <button class="button-style" v-on:click="clickEvent" v-bind:data-lang="buttonInfo.value">
+                {{ buttonInfo.text }}
+            </button>
+        </div>
+    </template>
+    <script type="text/javascript">
+        Vue.component('child-component', {
+            template: '#childTemplate',
+            props: [
+                'buttonInfo'
+            ],
+            methods: {
+                clickEvent: function (e) {
+                    this.$emit('timeclick', e.target.innerText, e.target.dataset.lang);
+                }
+            }
+        })
+    </script>
+    <!-- end of child component -->
+
+    <!-- parent component -->
+    <template id="parentTemplate">
+        <div>
+            <child-component v-for="s in buttons" v-bind:button-info="s" v-on:timeclick="timeclickEvent"></child-component>
+            <hr>
+            <div>{{ msg }}</div>
+        </div>
+    </template>
+    <script type="text/javascript">
+        Vue.component('parent-component', {
+            template: '#parentTemplate',
+            props: [
+                'buttons'
+            ],
+            data: function () {
+                return { msg: '' };
+            },
+            methods: {
+                timeclickEvent: function (k, v) {
+                    this.msg = k + ', ' + v;
+                }
+            }
+        })
+    </script>
+    <!-- end of parent component -->
+</head>
+<body>
+    <div id="app">
+        <parent-component :buttons="buttons"></parent-component>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                buttons: [
+                    {text: 'Hello', value: '영어'},
+                    {text: '신짜오', value: '베트남어'},
+                    {text: '니하오', value: '중국어'},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
