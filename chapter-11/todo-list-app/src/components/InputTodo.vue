@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         addTodo: function() {
-            this.$store.commit(Constants.ADD_TODO, {todo: this.todo});
+            this.$store.dispatch(Constants.ADD_TODO, {todo: this.todo});
             this.todo = '';
         }
     }

@@ -69,7 +69,7 @@
 
 <script>
     import Constants from '../Constants';
-    import {mapState, mapMutations} from 'vuex';
+    import {mapState, mapActions} from 'vuex';
 
     export default {
         name: 'List',
@@ -82,7 +82,7 @@
                     checked: !!done
                 }
             },
-            ...mapMutations([Constants.DELETE_TODO, Constants.DONE_TOGGLE])
+            ...mapActions([Constants.DELETE_TODO, Constants.DONE_TOGGLE])
         }
     };
 </script>
