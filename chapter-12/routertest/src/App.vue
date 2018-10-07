@@ -27,9 +27,11 @@
     import Contacts from './components/Contacts'
     import ContactByNo from './components/ContactByNo'
     import Home from './components/Home'
+    import NotFound from './components/NotFound'
     import VueRouter from 'vue-router'
 
     const router = new VueRouter({
+        mode: 'history',
         routes: [
             {path: '/', component: Home},
             {path: '/home', name: 'home', component: Home},
@@ -37,10 +39,32 @@
             {
                 path: '/contacts', name: 'contacts', component: Contacts,
                 children: [
-                    {path: ':no', name: 'contactbyno', component: ContactByNo}
+                    {
+                        path: ':no',
+                        name: 'contactbyno',
+                        component: ContactByNo,
+                        beforeEnter: (to, from, next) => {
+                            console.log('@@ beforeEnter!: ', from.path + ' --> ' + to.path);
+                            if (from.path.startsWith('/contacts')) {
+                                next();
+                            } else {
+                                next('/home');
+                            }
+                        }
+                    }
                 ]
-            }
+            },
+            {path: '*', component: NotFound}
         ]
+    });
+
+    router.beforeEach((to, from, next) => {
+        console.log('** beforeEach!');
+        next();
+    });
+
+    router.afterEach(() => {
+        console.log('** afterEach!');
     });
 
     export default {
