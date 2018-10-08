@@ -33,23 +33,24 @@
         name: "ContactByNo",
         data: function () {
             return {
-                no: 0,
+                // no: 0,
                 contacts: contactlist.contacts
             }
         },
-        created: function () {
-            this.no = this.$route.params.no;
-        },
+        props: ['no'],
+        // created: function () {
+        //     this.no = this.$route.params.no;
+        // },
         // watch: {
         //     '$route': function (to, from) {
         //         this.no = to.params.no;
         //     }
         // },
-        beforeRouteUpdate(to, from, next) {
-            console.log('** beforeRouteUpdate');
-            this.no = to.params.no;
-            next();
-        },
+        // beforeRouteUpdate(to, from, next) {
+        //     console.log('** beforeRouteUpdate');
+        //     this.no = to.params.no;
+        //     next();
+        // },
         computed: {
             contact: function () {
                 let no = parseInt(this.no),
