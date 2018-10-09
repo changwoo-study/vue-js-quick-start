@@ -1,6 +1,6 @@
 <template>
     <div class="modal">
-        <spinner class="spinner" line-size="10" :size="100"></spinner>
+        <spinner class="spinner" :line-size="10" :size="100"></spinner>
     </div>
 </template>
 
